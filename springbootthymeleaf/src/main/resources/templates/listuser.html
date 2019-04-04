@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="layout">
+<head>
+    <meta  http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>遍历User</title>
+</head>
+<body>
+<div  th:fragment="content" style="width:500px;margin:20px auto;text-align: center" >
+    <table align='center' border='1' cellspacing='0'>
+        <tr>
+            <td>id</td>
+            <td>name</td>
+            <td>编辑</td>
+            <td>删除</td>
+        </tr>
+        <tr th:each="c:${pages.list}">
+            <td th:text="${c.id}">1</td>
+            <td th:text="${c.name}">name</td>
+            <td><a th:href="@{/findUser(id=${c.id})}">编辑</a></td>
+            <td><a th:href="@{/deleteUser(id=${c.id})}">删除</a></td>
+        </tr>
+    </table>
+    <br/>
+    <div>
+        <a th:href="@{/listUser(start=0)}">[首  页]</a>
+        <a th:href="@{/listUser(start=${pages.pageNum-1})}">[上一页]</a>
+        <a th:href="@{/listUser(start=${pages.pageNum+1})}">[下一页]</a>
+        <a th:href="@{/listUser(start=${pages.pages})}">[末  页]</a>
+    </div>
+    <br/>
+    <form action="addUser" method="post">
+
+        name: <input name="name"/> <br/>
+        <button type="submit">添加</button>
+
+    </form>
+</div>
+</body>
+</html>

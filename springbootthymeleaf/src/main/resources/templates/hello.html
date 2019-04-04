@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+</head>
+<body>
+<div th:fragment="copy">
+    <p th:text="${hello}">Hello world!!</p>
+
+    <p th:if="${hello}!=null">Hello if</p>
+    <p th:unless="${hello}==null">Hello unless!</p>
+    <!--<p th:text="(${hello} !=null )?'条件成立显示这个':'条件不成立显示这个'" ></p>-->
+    <p th:text="(${hello}!=null) ? '条件成立显示这个':'条件不成立显示这个'" >Hello </p>
+    <a th:href="@{http://www.baidu.com}">Thymeleaf</a>
+    <h2>遍历</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>产品名称</th>
+            <th>价格</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p: ${ps}">
+            <td th:text="${p.id}">1</td>
+            <td th:text="${p.name}">name</td>
+            <td th:text="${p.price}">price</td>
+        </tr>
+        </tbody>
+    </table>
+    <h2>遍历 select </h2>
+
+    <select size="4">
+        <option th:each="p:${ps}" th:value="${p.id}" th:selected="${p.id==p.id}" th:text="${p.name}" ></option>
+    </select>
+    <input name="product" type="radio" th:each="p:${ps}" th:value="${p.id}"  th:checked="${p.id==p.id}"     th:text="${p.name}"  />
+    <br>
+    <div class="showing date">
+        <h2>格式化日期</h2>
+        直接输出日期 ${now}:
+        <p th:text="${now}"></p>
+        默认格式化 ${#dates.format(now)}:
+        <p th:text="${#dates.format(now)}"></p>
+        自定义格式化 ${#dates.format(now,'yyyy-MM-dd HH:mm:ss')}:
+        <p th:text="${#dates.format(now,'yyyy-MM-dd HH:mm:ss')}"></p>
+        直接获取当前时间：
+        <p th:text="${#dates.createNow()}"></p>
+        直接获取当天时间：
+        <p th:text="${#dates.createToday()}"></p>
+    </div>
+    </div>
+</body>
+</html>
