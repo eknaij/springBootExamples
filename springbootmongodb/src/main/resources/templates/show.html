@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>查询所有数据</title>
+</head>
+<body>
+<table align='center' border='1' cellspacing='0'>
+    <tr>
+        <td>序号</td>
+        <td>id</td>
+        <td>name</td>
+        <td>编辑</td>
+        <td>删除</td>
+    </tr>
+    <tr th:each="u,status:${users}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${u.userId}">1</td>
+        <td th:text="${u.name}">name</td>
+        <td><a th:href="@{/user/}+${u.userId}">编辑</a></td>
+        <td><a th:href="@{/removeUserById(id=${u.userId})}">删除</a></td>
+    </tr>
+</table>
+</body>
+</html>

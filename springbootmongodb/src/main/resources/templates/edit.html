@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改信息</title>
+</head>
+<body>
+    <div style="margin:0px auto; width:500px">
+
+      <form action="/user/${user.userId}" method="post">
+          <input type="hidden" name="_method" th:value="PUT">
+          userId: <input name="userId"  th:value="${user.userId}"/><br/>
+          name: <input name="name" th:value="${user.name}"/> <br/>
+          <button type="submit">提交</button>
+        </form>
+    </div>
+
+</body>
+</html>
