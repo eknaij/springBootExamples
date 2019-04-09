@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>上传成功</title>
+</head>
+<body>
+    <div th:if="${fileName}">
+        <h2 th:text="|${fileName} 上传成功，存储路径为 :${path}|"> </h2>
+    </div>
+</body>
+</html>
